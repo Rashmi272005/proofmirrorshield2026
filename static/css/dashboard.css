@@ -1,0 +1,110 @@
+
+/* =====================================================
+   PROOFMIRROR SHIELD — SHARED DASHBOARD COMPONENTS
+   ===================================================== */
+
+.dashboard-page .content-card,
+.dashboard-page .stat-card {
+    background: #111b2d;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    color: #edf2fb;
+}
+
+.dashboard-page .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 15px;
+}
+
+.dashboard-page .stat-card {
+    padding: 20px;
+}
+
+.dashboard-page .stat-label {
+    display: block;
+    color: #9baac0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.dashboard-page .stat-number {
+    display: block;
+    margin: 13px 0 5px;
+    color: #f1f5fb;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.dashboard-page .stat-description {
+    color: #8d9bb0;
+    font-size: 9px;
+}
+
+.dashboard-page .danger {
+    color: #ff6874;
+}
+
+.dashboard-page .warning {
+    color: #f5c15e;
+}
+
+.dashboard-page .success {
+    color: #4bd5a0;
+}
+
+.dashboard-page .risk-scale {
+    display: grid;
+    gap: 17px;
+}
+
+.dashboard-page .risk-scale-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.dashboard-page .risk-scale-item p {
+    margin: 6px 0 0;
+    color: #9baac0;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.dashboard-page .risk-scale-item strong {
+    color: #e8edf5;
+    font-size: 11px;
+}
+
+.dashboard-page .risk-dot {
+    width: 9px;
+    height: 9px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.dashboard-page .low-dot {
+    background: #4bd5a0;
+}
+
+.dashboard-page .medium-dot {
+    background: #f5c15e;
+}
+
+.dashboard-page .high-dot {
+    background: #ff6874;
+}
+
+@media (max-width: 950px) {
+    .dashboard-page .stats-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-page .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

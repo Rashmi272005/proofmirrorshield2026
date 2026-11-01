@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b16">
+
+    <title>Security Dashboard | ProofMirror Shield</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboardpage.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<header class="topbar">
+    <a class="brand" href="/">ProofMirror<span>.</span></a>
+
+    <nav class="nav-links">
+        <a href="/" class="ph-active">Home</a>
+        <a href="/about">About</a>
+        <a href="/verify">Verify</a>
+        <a href="/image-verify">Image Detection</a>
+        <a href="/intelligence">Intelligence</a>
+        <a href="/community">Community</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <a class="nav-button" href="/verify">+ New Scan</a>
+</header>
+
+
+<main class="dash-main">
+
+    <div class="dash-grid-background"></div>
+    <div class="dash-glow dash-glow-left"></div>
+    <div class="dash-glow dash-glow-right"></div>
+
+
+    <!-- DASHBOARD HEADING -->
+
+    <section class="dash-hero">
+
+        <div>
+            <div class="dash-overline">
+                <span class="dash-live-dot"></span>
+                SECURITY OVERVIEW
+                <span class="dash-overline-divider">/</span>
+                PROOFMIRROR SHIELD
+            </div>
+
+            <h1>Security <span>Command Centre.</span></h1>
+
+            <p>
+                Monitor your saved content analyses, understand detected
+                warning indicators and review potential digital threats
+                from one central dashboard.
+            </p>
+        </div>
+
+        <a href="/verify" class="dash-scan-button">
+            <span>＋</span> Analyse New Content
+        </a>
+
+    </section>
+
+
+    <!-- SYSTEM STATUS -->
+
+    <section class="dash-status-strip">
+
+        <div class="dash-status-item">
+            <span class="status-indicator"></span>
+            <strong>APPLICATION</strong>
+            <span class="status-online">READY</span>
+        </div>
+
+        <div class="dash-status-item">
+            <span class="status-indicator status-orange"></span>
+            <strong>ANALYSIS ENGINE</strong>
+            <span>RULE-BASED</span>
+        </div>
+
+        <div class="dash-status-item">
+            <span class="status-indicator status-cyan"></span>
+            <strong>REPORT STORAGE</strong>
+            <span>LOCAL DATABASE</span>
+        </div>
+
+        <span class="dash-status-note">
+            Prototype monitoring overview
+        </span>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="dash-stats-grid">
+
+        <article class="dash-stat-card stat-total">
+            <div class="dash-stat-heading">
+                <span>TOTAL ANALYSES</span>
+                <span class="dash-stat-icon">▤</span>
+            </div>
+
+            <strong class="dash-stat-number"
+                    data-count="{{ stats.total_reports }}">
+                {{ stats.total_reports }}
+            </strong>
+
+            <p>Reports saved in this application</p>
+            <span class="dash-stat-line"></span>
+        </article>
+
+
+        <article class="dash-stat-card stat-high">
+            <div class="dash-stat-heading">
+                <span>HIGH RISK</span>
+                <span class="dash-stat-icon">!</span>
+            </div>
+
+            <strong class="dash-stat-number danger-text"
+                    data-count="{{ stats.high_risk }}">
+                {{ stats.high_risk }}
+            </strong>
+
+            <p>Reports requiring careful attention</p>
+            <span class="dash-stat-line"></span>
+        </article>
+
+
+        <article class="dash-stat-card stat-medium">
+            <div class="dash-stat-heading">
+                <span>NEEDS REVIEW</span>
+                <span class="dash-stat-icon">◇</span>
+            </div>
+
+            <strong class="dash-stat-number warning-text"
+                    data-count="{{ stats.needs_review }}">
+                {{ stats.needs_review }}
+            </strong>
+
+            <p>Reports with warning indicators</p>
+            <span class="dash-stat-line"></span>
+        </article>
+
+
+        <article class="dash-stat-card stat-low">
+            <div class="dash-stat-heading">
+                <span>LOWER RISK</span>
+                <span class="dash-stat-icon">✓</span>
+            </div>
+
+            <strong class="dash-stat-number success-text"
+                    data-count="{{ stats.lower_risk }}">
+                {{ stats.lower_risk }}
+            </strong>
+
+            <p>Fewer indicators detected</p>
+            <span class="dash-stat-line"></span>
+        </article>
+
+    </section>
+
+
+    <!-- MAIN DASHBOARD GRID -->
+
+    <section class="dash-main-grid">
+
+
+        <!-- RISK DISTRIBUTION -->
+
+        <article class="dash-panel">
+
+            <div class="dash-panel-heading">
+                <div>
+                    <span class="dash-section-label">ANALYTICS / 01</span>
+                    <h2>Risk Distribution</h2>
+                    <p>Classification of saved analysis reports</p>
+                </div>
+
+                <span class="dash-panel-tag">ALL REPORTS</span>
+            </div>
+
+
+            <div class="dash-risk-content">
+
+                <div class="dash-donut-wrap">
+
+                    <canvas
+                        id="dashboardRiskChart"
+                        width="260"
+                        height="260"
+                        data-low="{{ stats.lower_risk }}"
+                        data-medium="{{ stats.needs_review }}"
+                        data-high="{{ stats.high_risk }}"
+                        aria-label="Risk distribution chart">
+                    </canvas>
+
+                    <div class="dash-donut-center">
+                        <strong id="dashChartTotal">
+                            {{ stats.total_reports }}
+                        </strong>
+                        <span>TOTAL REPORTS</span>
+                    </div>
+
+                </div>
+
+
+                <div class="dash-legend">
+
+                    <div class="dash-legend-item">
+                        <span class="legend-color legend-low"></span>
+                        <div>
+                            <strong>Lower Risk</strong>
+                            <small id="dashLowLabel">
+                                {{ stats.lower_risk }} reports
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="dash-legend-item">
+                        <span class="legend-color legend-medium"></span>
+                        <div>
+                            <strong>Needs Review</strong>
+                            <small id="dashMediumLabel">
+                                {{ stats.needs_review }} reports
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="dash-legend-item">
+                        <span class="legend-color legend-high"></span>
+                        <div>
+                            <strong>High Risk</strong>
+                            <small id="dashHighLabel">
+                                {{ stats.high_risk }} reports
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="dash-panel-footnote">
+                <span class="dash-footnote-dot"></span>
+                Based on reports stored in your local database.
+            </div>
+
+        </article>
+
+
+        <!-- ANALYSIS ENGINE -->
+
+        <article class="dash-panel">
+
+            <div class="dash-panel-heading">
+                <div>
+                    <span class="dash-section-label">SYSTEM / 02</span>
+                    <h2>Analysis Engine</h2>
+                    <p>Checks performed by the current prototype</p>
+                </div>
+
+                <span class="engine-ready">● READY</span>
+            </div>
+
+
+            <div class="engine-feature">
+                <span class="engine-feature-icon orange-icon">T</span>
+                <div>
+                    <strong>Message Pattern Analysis</strong>
+                    <small>Detects urgency, threats and sensitive-information requests</small>
+                </div>
+                <span class="engine-check">✓</span>
+            </div>
+
+
+            <div class="engine-feature">
+                <span class="engine-feature-icon cyan-icon">U</span>
+                <div>
+                    <strong>URL Structure Analysis</strong>
+                    <small>Checks URL structure, shorteners and suspicious patterns</small>
+                </div>
+                <span class="engine-check">✓</span>
+            </div>
+
+
+            <div class="engine-feature">
+                <span class="engine-feature-icon purple-icon">E</span>
+                <div>
+                    <strong>Evidence Generation</strong>
+                    <small>Organises findings, unknowns and suggested next steps</small>
+                </div>
+                <span class="engine-check">✓</span>
+            </div>
+
+
+            <div class="engine-note">
+                <strong>TRANSPARENT ANALYSIS</strong>
+                <p>
+                    The current prototype uses predefined rules and indicators.
+                    It does not perform live website reputation checks,
+                    global threat monitoring or independent fact verification.
+                </p>
+            </div>
+
+        </article>
+
+
+        <!-- RECENT REPORTS -->
+
+        <article class="dash-panel activity-panel">
+
+            <div class="dash-panel-heading">
+                <div>
+                    <span class="dash-section-label">REPORTS / 03</span>
+                    <h2>Recent Analysis Activity</h2>
+                    <p>Latest reports saved by this application</p>
+                </div>
+
+                <a href="/intelligence" class="dash-text-link">
+                    Intelligence Centre →
+                </a>
+            </div>
+
+
+            <div class="dash-table-tools">
+
+                <div class="dash-search">
+                    <span>⌕</span>
+                    <input
+                        type="search"
+                        id="reportSearch"
+                        placeholder="Search reports..."
+                        aria-label="Search reports">
+                </div>
+
+                <select id="riskFilter" aria-label="Filter by risk">
+                    <option value="all">All risk levels</option>
+                    <option value="high">High Risk</option>
+                    <option value="medium">Needs Review</option>
+                    <option value="low">Lower Risk</option>
+                </select>
+
+            </div>
+
+
+            <div class="dash-table-wrap">
+
+                <table class="dash-table" id="reportsTable">
+
+                    <thead>
+                        <tr>
+                            <th>REPORT ID</th>
+                            <th>INPUT TYPE</th>
+                            <th>SUBMITTED CONTENT</th>
+                            <th>SCORE</th>
+                            <th>RISK LEVEL</th>
+                            <th>DATE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="reportsTableBody">
+
+                        {% for report in recent_reports %}
+
+                        <tr
+                            class="report-row"
+                            data-risk="{{ report.risk_level|lower }}"
+                            data-search="{{ (report.id|string ~ ' ' ~ report.input_type ~ ' ' ~ report.text_preview ~ ' ' ~ report.url)|lower }}">
+
+                            <td>
+                                <span class="report-id">
+                                    #{{ report.id }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="report-type">
+                                    {{ report.input_type|upper }}
+                                </span>
+                            </td>
+
+                            <td class="report-preview">
+                                {% if report.text_preview %}
+                                    {{ report.text_preview[:55] }}
+                                    {% if report.text_preview|length > 55 %}…{% endif %}
+                                {% elif report.url %}
+                                    {{ report.url[:55] }}
+                                    {% if report.url|length > 55 %}…{% endif %}
+                                {% else %}
+                                    No preview available
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {{ report.score }}/100
+                            </td>
+
+                            <td>
+                                {% if report.risk_level == "high" %}
+                                    <span class="risk-badge badge-high">HIGH RISK</span>
+                                {% elif report.risk_level == "medium" %}
+                                    <span class="risk-badge badge-medium">NEEDS REVIEW</span>
+                                {% else %}
+                                    <span class="risk-badge badge-low">LOWER RISK</span>
+                                {% endif %}
+                            </td>
+
+                            <td class="report-date">
+                                {{ report.created_at }}
+                            </td>
+
+                            <td>
+                                <a
+                                    class="report-view-link"
+                                    href="{{ url_for('result', report_id=report.id) }}">
+                                    View →
+                                </a>
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="7">
+                                <div class="dash-empty-state">
+                                    <div class="empty-icon">⌕</div>
+                                    <h3>No reports yet</h3>
+                                    <p>
+                                        Submit your first message or URL
+                                        to begin building your analysis history.
+                                    </p>
+                                    <a href="/verify" class="dash-scan-button">
+                                        Start Your First Analysis →
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="dash-no-results" id="noReportsFound" hidden>
+                No reports match your search or selected filter.
+            </p>
+
+        </article>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <article class="dash-panel quick-panel">
+
+            <div class="dash-panel-heading">
+                <div>
+                    <span class="dash-section-label">NAVIGATION / 04</span>
+                    <h2>Quick Actions</h2>
+                    <p>Access the main areas of ProofMirror Shield</p>
+                </div>
+            </div>
+
+
+            <a href="/verify" class="quick-action">
+                <span class="quick-action-icon">＋</span>
+                <span>
+                    <strong>Analyse New Content</strong>
+                    <small>Check a suspicious message or URL</small>
+                </span>
+                <b>→</b>
+            </a>
+
+
+            <a href="/intelligence" class="quick-action">
+                <span class="quick-action-icon">◈</span>
+                <span>
+                    <strong>Threat Intelligence</strong>
+                    <small>Explore saved risk statistics</small>
+                </span>
+                <b>→</b>
+            </a>
+
+
+            <a href="/community" class="quick-action">
+                <span class="quick-action-icon">◎</span>
+                <span>
+                    <strong>Community Shield</strong>
+                    <small>Explore community reports</small>
+                </span>
+                <b>→</b>
+            </a>
+
+
+            <a href="/about" class="quick-action">
+                <span class="quick-action-icon">i</span>
+                <span>
+                    <strong>About the Project</strong>
+                    <small>Learn how the prototype works</small>
+                </span>
+                <b>→</b>
+            </a>
+
+        </article>
+
+    </section>
+
+
+    <!-- RISK CLASSIFICATION GUIDE -->
+
+    <section class="dash-risk-guide">
+
+        <div>
+            <span class="dash-section-label">UNDERSTANDING THE RESULTS</span>
+            <h2>Risk Classification Guide</h2>
+            <p>
+                These ranges represent the score thresholds used by
+                the current analysis engine.
+            </p>
+        </div>
+
+
+        <div class="dash-risk-levels">
+
+            <div class="dash-risk-level risk-guide-low">
+                <span class="guide-dot"></span>
+                <strong>LOWER RISK</strong>
+                <b>0–24</b>
+                <small>
+                    Fewer warning indicators were detected.
+                    This does not guarantee authenticity.
+                </small>
+            </div>
+
+
+            <div class="dash-risk-level risk-guide-medium">
+                <span class="guide-dot"></span>
+                <strong>NEEDS REVIEW</strong>
+                <b>25–59</b>
+                <small>
+                    Warning indicators were found.
+                    Review the evidence carefully.
+                </small>
+            </div>
+
+
+            <div class="dash-risk-level risk-guide-high">
+                <span class="guide-dot"></span>
+                <strong>HIGH RISK</strong>
+                <b>60–100</b>
+                <small>
+                    Strong warning indicators were detected.
+                    Avoid acting until independently verified.
+                </small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DISCLAIMER -->
+
+    <section class="dash-disclaimer">
+
+        <span class="disclaimer-symbol">i</span>
+
+        <p>
+            <strong>Important:</strong>
+            ProofMirror Shield is a prototype that identifies potential
+            warning signs using rule-based analysis. It does not establish
+            whether content is true or false, does not guarantee website
+            safety and does not connect to live global threat feeds.
+            Always verify important information through trusted official sources.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+    © 2026 ProofMirror Shield | Team HackNova
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/dashboard-page.js') }}" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | ProofMirror Shield</title>
+    <meta name="description" content="Learn about ProofMirror Shield, a transparent tool for identifying suspicious messages and URL warning signs.">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+
+<body>
+
+<header class="pm-header">
+    <a href="/" class="pm-brand">
+        <span>ProofMirror<span class="pm-brand-accent"> Shield</span></span>
+    </a>
+
+    <nav class="pm-nav" aria-label="Main navigation">
+        <a href="/" class="ph-active">Home</a>
+        <a href="/about">About</a>
+        <a href="/verify">Verify</a>
+        <a href="/image-verify">Image Detection</a>
+        <a href="/intelligence">Intelligence</a>
+        <a href="/community">Community</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <a href="/verify" class="pm-header-cta">Start verification <span>↗</span></a>
+</header>
+
+<main class="pm-about">
+
+    <!-- HERO -->
+    <section class="pm-hero">
+        <div class="pm-hero-grid"></div>
+        <div class="pm-glow pm-glow-one"></div>
+        <div class="pm-glow pm-glow-two"></div>
+        <div class="pm-energy-line"></div>
+
+        <div class="pm-container pm-hero-layout">
+
+            <div class="pm-hero-content">
+                <div class="pm-eyebrow">
+                    <span class="pm-live-dot"></span>
+                    THE STORY BEHIND PROOFMIRROR
+                </div>
+
+                <h1>
+                    Trust less blindly.<br>
+                    <span>Verify more confidently.</span>
+                </h1>
+
+                <p class="pm-hero-description">
+                    In a world filled with suspicious messages and misleading links,
+                    one careful check can make a difference. ProofMirror Shield helps
+                    you identify warning signs and make informed digital decisions.
+                </p>
+
+                <div class="pm-hero-buttons">
+                    <a href="/verify" class="pm-button pm-button-primary">
+                        Start checking <span>↗</span>
+                    </a>
+                    <a href="#our-mission" class="pm-button pm-button-secondary">
+                        Discover our mission
+                    </a>
+                </div>
+
+                <div class="pm-trust-points">
+                    <span><i></i> Transparent analysis</span>
+                    <span><i></i> Clear evidence</span>
+                    <span><i></i> Responsible decisions</span>
+                </div>
+            </div>
+
+            <!-- Animated radar visual -->
+            <div class="pm-hero-visual" aria-label="Decorative animated security radar">
+                <div class="pm-radar">
+                    <div class="pm-radar-ring ring-one"></div>
+                    <div class="pm-radar-ring ring-two"></div>
+                    <div class="pm-radar-ring ring-three"></div>
+                    <div class="pm-radar-cross horizontal"></div>
+                    <div class="pm-radar-cross vertical"></div>
+                    <div class="pm-radar-sweep"></div>
+
+                    <div class="pm-radar-center">
+                        <span>PM</span>
+                        <small>SHIELD</small>
+                    </div>
+
+                    <span class="pm-radar-point point-one"></span>
+                    <span class="pm-radar-point point-two"></span>
+                    <span class="pm-radar-point point-three"></span>
+                </div>
+
+                <div class="pm-floating-card pm-floating-top">
+                    <span class="pm-floating-icon orange">⌁</span>
+                    <span>
+                        <strong>Warning signals</strong>
+                        <small>Review detected patterns</small>
+                    </span>
+                    <span class="pm-status-dot"></span>
+                </div>
+
+                <div class="pm-floating-card pm-floating-bottom">
+                    <span class="pm-floating-icon cyan">✓</span>
+                    <span>
+                        <strong>Stay informed</strong>
+                        <small>Think before you trust</small>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pm-scroll-indicator">
+            <span>SCROLL TO EXPLORE</span>
+            <b>↓</b>
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="pm-section pm-mission" id="our-mission">
+        <div class="pm-container pm-mission-grid">
+
+            <div>
+                <div class="pm-section-label">01 / OUR MISSION</div>
+
+                <h2>
+                    Digital trust begins<br>
+                    with <span>awareness.</span>
+                </h2>
+            </div>
+
+            <div class="pm-mission-copy">
+                <p>
+                    Digital threats are becoming harder to recognise. Suspicious
+                    messages can create urgency, request sensitive information,
+                    or direct people to questionable websites.
+                </p>
+
+                <p>
+                    ProofMirror Shield provides a structured first-level check
+                    of submitted text and URLs. It highlights selected warning
+                    patterns and organises the findings into an understandable report.
+                </p>
+
+                <div class="pm-mission-quote">
+                    <span>OUR BELIEF</span>
+                    <strong>
+                        Don't just see a result. Understand the reason behind it.
+                    </strong>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="pm-section pm-values">
+        <div class="pm-container">
+
+            <div class="pm-section-heading">
+                <div>
+                    <div class="pm-section-label">02 / OUR VALUES</div>
+                    <h2>Technology with <span>responsibility.</span></h2>
+                </div>
+
+                <p>
+                    We believe digital safety tools should be understandable,
+                    transparent and honest about their limitations.
+                </p>
+            </div>
+
+            <div class="pm-value-grid">
+
+                <article class="pm-value-card">
+                    <span class="pm-card-index">01</span>
+                    <div class="pm-value-icon">◎</div>
+                    <h3>Clarity</h3>
+                    <p>
+                        Present warning signs in simple language so users
+                        can understand what needs attention.
+                    </p>
+                    <span class="pm-card-decoration"></span>
+                </article>
+
+                <article class="pm-value-card">
+                    <span class="pm-card-index">02</span>
+                    <div class="pm-value-icon">⌁</div>
+                    <h3>Transparency</h3>
+                    <p>
+                        Explain the detected signals and make it clear
+                        what the analysis has not verified.
+                    </p>
+                    <span class="pm-card-decoration"></span>
+                </article>
+
+                <article class="pm-value-card">
+                    <span class="pm-card-index">03</span>
+                    <div class="pm-value-icon">◇</div>
+                    <h3>Awareness</h3>
+                    <p>
+                        Encourage people to pause, check the context
+                        and make informed decisions.
+                    </p>
+                    <span class="pm-card-decoration"></span>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="pm-section pm-process">
+        <div class="pm-container">
+
+            <div class="pm-section-label">03 / HOW IT WORKS</div>
+
+            <h2 class="pm-process-heading">
+                From input to <span>insight.</span>
+            </h2>
+
+            <p class="pm-process-subtitle">
+                A simple process designed to make suspicious content easier to review.
+            </p>
+
+            <div class="pm-process-grid">
+
+                <article class="pm-process-card">
+                    <div class="pm-process-top">
+                        <span>01</span>
+                        <span>INPUT</span>
+                    </div>
+                    <div class="pm-process-icon">↳</div>
+                    <h3>Submit content</h3>
+                    <p>
+                        Enter a suspicious message, a URL, or both
+                        into the verification tool.
+                    </p>
+                </article>
+
+                <div class="pm-connector"><span>›</span></div>
+
+                <article class="pm-process-card">
+                    <div class="pm-process-top">
+                        <span>02</span>
+                        <span>ANALYSIS</span>
+                    </div>
+                    <div class="pm-process-icon">⌕</div>
+                    <h3>Analyse warning signs</h3>
+                    <p>
+                        Pattern-based checks examine selected text
+                        and URL characteristics.
+                    </p>
+                </article>
+
+                <div class="pm-connector"><span>›</span></div>
+
+                <article class="pm-process-card">
+                    <div class="pm-process-top">
+                        <span>03</span>
+                        <span>INSIGHT</span>
+                    </div>
+                    <div class="pm-process-icon">▤</div>
+                    <h3>Understand the report</h3>
+                    <p>
+                        Review the risk category, findings, unknowns
+                        and suggested next steps.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="pm-section pm-features">
+        <div class="pm-container pm-features-layout">
+
+            <div class="pm-features-intro">
+                <div class="pm-section-label">04 / OUR CAPABILITIES</div>
+
+                <h2>
+                    More than a score.<br>
+                    <span>Understand the signals.</span>
+                </h2>
+
+                <p>
+                    A score alone does not tell the whole story.
+                    ProofMirror Shield combines risk indicators with
+                    explanations to help users review the result.
+                </p>
+
+                <a href="/verify" class="pm-text-link">
+                    Explore verification <span>↗</span>
+                </a>
+            </div>
+
+            <div class="pm-feature-list">
+
+                <div class="pm-feature-row">
+                    <span class="pm-feature-icon">⌁</span>
+                    <span class="pm-feature-content">
+                        <strong>Text pattern analysis</strong>
+                        <small>
+                            Highlights selected urgency, payment,
+                            credential and suspicious-request patterns.
+                        </small>
+                    </span>
+                    <span class="pm-feature-arrow">↗</span>
+                </div>
+
+                <div class="pm-feature-row">
+                    <span class="pm-feature-icon">◎</span>
+                    <span class="pm-feature-content">
+                        <strong>URL structure analysis</strong>
+                        <small>
+                            Checks visible URL characteristics without
+                            opening the submitted website.
+                        </small>
+                    </span>
+                    <span class="pm-feature-arrow">↗</span>
+                </div>
+
+                <div class="pm-feature-row">
+                    <span class="pm-feature-icon">▤</span>
+                    <span class="pm-feature-content">
+                        <strong>Evidence summaries</strong>
+                        <small>
+                            Organises findings, unknowns, limitations
+                            and suggested next steps.
+                        </small>
+                    </span>
+                    <span class="pm-feature-arrow">↗</span>
+                </div>
+
+                <div class="pm-feature-row">
+                    <span class="pm-feature-icon">◷</span>
+                    <span class="pm-feature-content">
+                        <strong>Report history</strong>
+                        <small>
+                            Review saved analysis reports through
+                            the dashboard.
+                        </small>
+                    </span>
+                    <span class="pm-feature-arrow">↗</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LIMITATIONS -->
+    <section class="pm-section pm-transparency">
+        <div class="pm-container pm-transparency-content">
+            <div class="pm-section-label">05 / HONEST BY DESIGN</div>
+
+            <div class="pm-transparency-symbol">i</div>
+
+            <h2>
+                Trust the process.<br>
+                <span>Understand its limits.</span>
+            </h2>
+
+            <p>
+                ProofMirror Shield currently uses rule-based pattern checks.
+                It does not independently establish whether a message is true,
+                confirm a sender's identity, or guarantee that a website is safe.
+                A lower-risk result is not proof of authenticity. Always verify
+                important information through trusted official channels.
+            </p>
+
+            <div class="pm-limit-tags">
+                <span>Not a final fact-check</span>
+                <span>No guarantee of website safety</span>
+                <span>Human judgement matters</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="pm-final-cta">
+        <div class="pm-cta-orb"></div>
+
+        <div class="pm-container pm-final-content">
+            <div class="pm-section-label">YOUR NEXT CLICK MATTERS</div>
+
+            <h2>
+                Pause. Check.<br>
+                <span>Make an informed choice.</span>
+            </h2>
+
+            <p>
+                Be aware of the signals before you decide what to trust.
+            </p>
+
+            <a href="/verify" class="pm-button pm-button-primary">
+                Verify content now <span>↗</span>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="pm-footer">
+    <div class="pm-container pm-footer-inner">
+        <a href="/" class="pm-brand">
+            <span class="pm-brand-icon">P</span>
+            <span>ProofMirror<span class="pm-brand-accent"> Shield</span></span>
+        </a>
+
+        <p>Think before you trust. Verify before you share.</p>
+
+        <a href="/verify">Start verification ↗</a>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image Detection | ProofMirror Shield</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/image_verify.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="/" class="logo">ProofMirror <span>Shield</span></a>
+
+        <div class="nav-links">
+            <a href="/" class="ph-active">Home</a>
+        <a href="/about">About</a>
+        <a href="/verify">Verify</a>
+        <a href="/image-verify">Image Detection</a>
+        <a href="/intelligence">Intelligence</a>
+        <a href="/community">Community</a>
+        <a href="/dashboard">Dashboard</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <p class="tagline">
+            <span class="dot"></span>
+            YOUR DIGITAL SAFETY COMPANION
+        </p>
+
+        <h1>
+            Don't just trust.<br>
+            <span>Verify the image.</span>
+        </h1>
+
+        <p class="description">
+            Analyze images, detect visible faces and examine
+            whether an image may be AI-generated.
+        </p>
+
+    </section>
+
+
+    <!-- IMAGE UPLOAD SECTION -->
+    <main class="container">
+
+        <section class="upload-card">
+
+            <div class="section-heading">
+                <span class="section-label">01 / IMAGE ANALYSIS</span>
+                <h2>Upload your image</h2>
+                <p>
+                    Select an image to start the verification process.
+                </p>
+            </div>
+
+
+            <div class="upload-area">
+
+                <div class="upload-icon">↑</div>
+
+                <h3>Choose an image to analyze</h3>
+
+                <p>JPG, JPEG, PNG or WEBP · Maximum 2 MB</p>
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/jpeg,image/png,image/webp"
+                    hidden
+                >
+
+                <label for="imageInput" class="upload-button">
+                    Choose Image
+                </label>
+
+                <p id="fileName" class="file-name">
+                    No image selected
+                </p>
+
+            </div>
+
+
+            <!-- IMAGE PREVIEW -->
+            <div class="preview-section">
+
+                <h3>Image Preview</h3>
+
+                <img
+                    id="preview"
+                    src=""
+                    alt="Selected image preview"
+                    style="display:none;"
+                >
+
+            </div>
+
+
+            <button id="analyzeBtn" class="analyze-button" disabled>
+                Start Image Analysis
+            </button>
+
+            <p id="status" class="status"></p>
+
+        </section>
+
+
+        <!-- RESULTS SECTION -->
+        <section id="results" class="results-section">
+
+            <div class="results-heading">
+                <span class="section-label">02 / ANALYSIS RESULTS</span>
+                <h2>Image Analysis Report</h2>
+            </div>
+
+
+            <!-- FACE DETECTION -->
+            <div class="result-card">
+
+                <h3>Face Detection</h3>
+
+                <div class="result-value">
+                    <span id="faceCount">0</span>
+                    <small>Faces detected</small>
+                </div>
+
+                <p id="dimensions"></p>
+
+                <h4>Detected Face Details</h4>
+
+                <ul id="faceDetails"></ul>
+
+            </div>
+
+
+            <!-- PROCESSED IMAGE -->
+            <div class="result-card">
+
+                <h3>Face Detection Preview</h3>
+
+                <img
+                    id="processedImage"
+                    src=""
+                    alt="Processed image with detected faces"
+                >
+
+            </div>
+
+
+            <!-- AI IMAGE DETECTION -->
+            <div class="result-card ai-card">
+
+                <h3>AI Image Detection</h3>
+
+                <div class="ai-verdict" id="aiVerdict">
+                    Waiting for analysis...
+                </div>
+
+                <div class="probability-grid">
+
+                    <div class="probability-box">
+                        <span>AI Probability</span>
+                        <strong id="aiProbability">0%</strong>
+                    </div>
+
+                    <div class="probability-box">
+                        <span>Real Probability</span>
+                        <strong id="realProbability">0%</strong>
+                    </div>
+
+                    <div class="probability-box">
+                        <span>Confidence</span>
+                        <strong id="aiConfidence">0%</strong>
+                    </div>
+
+                </div>
+
+                <p class="disclaimer">
+                    Note: AI detection results are model predictions
+                    and should not be treated as definitive proof
+                    of image authenticity.
+                </p>
+
+            </div>
+
+
+            <p id="reportId" class="report-id"></p>
+
+        </section>
+
+
+        <!-- EMPTY STATE -->
+        <section id="emptyState" class="empty-state">
+
+            <div class="empty-icon">◎</div>
+
+            <h3>Ready to inspect your image?</h3>
+
+            <p>
+                Upload an image to view face detection and AI analysis results.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 ProofMirror Shield. Verify before you trust.</p>
+    </footer>
+
+
+    <!-- EXISTING JAVASCRIPT -->
+    <script src="{{ url_for('static', filename='js/image_verify.js') }}"></script>
+
+</body>
+</html>

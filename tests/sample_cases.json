@@ -1,0 +1,39 @@
+
+[
+    {
+        "id": 1,
+        "category": "Safe message",
+        "text": "The college library will remain open until 5 PM.",
+        "expected_risk": "low"
+    },
+    {
+        "id": 2,
+        "category": "OTP request",
+        "text": "Please send your OTP immediately.",
+        "expected_risk": "high"
+    },
+    {
+        "id": 3,
+        "category": "Prize message",
+        "text": "Congratulations! You have won a huge reward.",
+        "expected_risk": "low"
+    },
+    {
+        "id": 4,
+        "category": "Urgent message",
+        "text": "Act now. Your account will be blocked.",
+        "expected_risk": "medium"
+    },
+    {
+        "id": 5,
+        "category": "HTTP URL",
+        "url": "http://example.com",
+        "expected_risk": "low"
+    },
+    {
+        "id": 6,
+        "category": "Shortened URL",
+        "url": "https://bit.ly/example",
+        "expected_risk": "low"
+    }
+]

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Threat Intelligence | ProofMirror Shield</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/responsive.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/intelligence.css') }}">
+</head>
+
+<body class="intelligence-page">
+
+<header class="topbar">
+    <a class="brand" href="/">ProofMirror<span> Shield</span></a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+       <a href="/" class="ph-active">Home</a>
+        <a href="/about">About</a>
+        <a href="/verify">Verify</a>
+        <a href="/image-verify">Image Detection</a>
+        <a href="/intelligence">Intelligence</a>
+        <a href="/community">Community</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <a class="nav-button" href="/verify">＋ New Analysis</a>
+</header>
+
+
+<main class="intel-main">
+
+    <div class="intel-grid-bg"></div>
+    <div class="intel-glow intel-glow-one"></div>
+    <div class="intel-glow intel-glow-two"></div>
+
+
+    <!-- HERO -->
+    <section class="intel-hero">
+
+        <div class="intel-status">
+            <span class="intel-status-dot"></span>
+            SECURITY INTELLIGENCE OVERVIEW
+        </div>
+
+        <div class="intel-hero-row">
+
+            <div>
+                <span class="intel-eyebrow">PROOFMIRROR / INTELLIGENCE</span>
+
+                <h1>
+                    Threat <span>Intelligence.</span>
+                </h1>
+
+                <p>
+                    A central view of risk indicators detected across
+                    your saved content analyses.
+                </p>
+            </div>
+
+            <a href="/verify" class="intel-scan-button">
+                <span>＋</span>
+                Run New Analysis
+            </a>
+
+        </div>
+
+        <div class="intel-hero-line">
+            <span>LOCAL ANALYSIS DATABASE</span>
+            <span class="intel-line"></span>
+            <span>RULE-BASED DETECTION ENGINE</span>
+        </div>
+
+    </section>
+
+
+    <!-- METRIC CARDS -->
+    <section class="intel-stats-grid">
+
+        <article class="intel-stat-card">
+
+            <div class="intel-stat-top">
+                <span class="intel-stat-label">TOTAL ANALYSES</span>
+                <span class="intel-stat-icon icon-orange">▤</span>
+            </div>
+
+            <strong class="intel-stat-number">
+                {{ stats.total_reports }}
+            </strong>
+
+            <span class="intel-stat-note">
+                Reports saved in database
+            </span>
+
+            <div class="intel-stat-bottom orange-bar"></div>
+
+        </article>
+
+
+        <article class="intel-stat-card">
+
+            <div class="intel-stat-top">
+                <span class="intel-stat-label">HIGH RISK</span>
+                <span class="intel-stat-icon icon-red">!</span>
+            </div>
+
+            <strong class="intel-stat-number red-number">
+                {{ stats.high_risk }}
+            </strong>
+
+            <span class="intel-stat-note">
+                High-risk classifications
+            </span>
+
+            <div class="intel-stat-bottom red-bar"></div>
+
+        </article>
+
+
+        <article class="intel-stat-card">
+
+            <div class="intel-stat-top">
+                <span class="intel-stat-label">NEEDS REVIEW</span>
+                <span class="intel-stat-icon icon-yellow">◈</span>
+            </div>
+
+            <strong class="intel-stat-number yellow-number">
+                {{ stats.needs_review }}
+            </strong>
+
+            <span class="intel-stat-note">
+                Medium-risk classifications
+            </span>
+
+            <div class="intel-stat-bottom yellow-bar"></div>
+
+        </article>
+
+
+        <article class="intel-stat-card">
+
+            <div class="intel-stat-top">
+                <span class="intel-stat-label">LOWER RISK</span>
+                <span class="intel-stat-icon icon-green">✓</span>
+            </div>
+
+            <strong class="intel-stat-number green-number">
+                {{ stats.lower_risk }}
+            </strong>
+
+            <span class="intel-stat-note">
+                Lower-risk classifications
+            </span>
+
+            <div class="intel-stat-bottom green-bar"></div>
+
+        </article>
+
+    </section>
+
+
+    <!-- CHARTS -->
+    <section class="intel-chart-grid">
+
+        <!-- DOUGHNUT CHART -->
+        <article class="intel-panel intel-distribution-panel">
+
+            <div class="intel-panel-heading">
+
+                <div>
+                    <span class="intel-eyebrow">RISK OVERVIEW / 01</span>
+                    <h2>Risk distribution</h2>
+                    <p>Breakdown of all saved analysis reports.</p>
+                </div>
+
+                <span class="intel-panel-tag">DATABASE</span>
+
+            </div>
+
+
+            <div class="intel-doughnut-layout">
+
+                <div class="intel-doughnut-wrap">
+
+                    <canvas
+                        id="riskChart"
+                        width="320"
+                        height="320"
+                        data-low="{{ stats.lower_risk }}"
+                        data-medium="{{ stats.needs_review }}"
+                        data-high="{{ stats.high_risk }}"
+                        aria-label="Doughnut chart of lower, medium and high-risk reports"
+                        role="img"
+                    ></canvas>
+
+                    <div class="intel-doughnut-center">
+                        <strong id="chartTotal">
+                            {{ stats.total_reports }}
+                        </strong>
+                        <span>TOTAL REPORTS</span>
+                    </div>
+
+                </div>
+
+
+                <div class="intel-chart-legend">
+
+                    <div class="intel-legend-item">
+                        <span class="legend-dot legend-green"></span>
+                        <div>
+                            <strong>Lower Risk</strong>
+                            <span id="lowLegend">{{ stats.lower_risk }} reports</span>
+                        </div>
+                    </div>
+
+                    <div class="intel-legend-item">
+                        <span class="legend-dot legend-yellow"></span>
+                        <div>
+                            <strong>Needs Review</strong>
+                            <span id="mediumLegend">{{ stats.needs_review }} reports</span>
+                        </div>
+                    </div>
+
+                    <div class="intel-legend-item">
+                        <span class="legend-dot legend-red"></span>
+                        <div>
+                            <strong>High Risk</strong>
+                            <span id="highLegend">{{ stats.high_risk }} reports</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- COMPARISON CHART -->
+        <article class="intel-panel">
+
+            <div class="intel-panel-heading">
+
+                <div>
+                    <span class="intel-eyebrow">CLASSIFICATION / 02</span>
+                    <h2>Risk comparison</h2>
+                    <p>Number of reports in each risk category.</p>
+                </div>
+
+                <span class="intel-panel-tag">REPORTS</span>
+
+            </div>
+
+
+            <div class="intel-bars" id="riskBars">
+
+                <div class="intel-bar-row">
+
+                    <div class="intel-bar-label">
+                        <span>High Risk</span>
+                        <strong>{{ stats.high_risk }}</strong>
+                    </div>
+
+                    <div class="intel-bar-track">
+                        <div
+                            class="intel-bar-fill bar-fill-red"
+                            data-value="{{ stats.high_risk }}"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="intel-bar-row">
+
+                    <div class="intel-bar-label">
+                        <span>Needs Review</span>
+                        <strong>{{ stats.needs_review }}</strong>
+                    </div>
+
+                    <div class="intel-bar-track">
+                        <div
+                            class="intel-bar-fill bar-fill-yellow"
+                            data-value="{{ stats.needs_review }}"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="intel-bar-row">
+
+                    <div class="intel-bar-label">
+                        <span>Lower Risk</span>
+                        <strong>{{ stats.lower_risk }}</strong>
+                    </div>
+
+                    <div class="intel-bar-track">
+                        <div
+                            class="intel-bar-fill bar-fill-green"
+                            data-value="{{ stats.lower_risk }}"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="intel-chart-footnote">
+                <span class="intel-footnote-dot"></span>
+                Bars are scaled against the largest category.
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- DETECTION INTELLIGENCE -->
+    <section class="intel-section-heading">
+
+        <div>
+            <span class="intel-eyebrow">DETECTION ENGINE / 03</span>
+            <h2>What the engine examines</h2>
+            <p>Warning patterns checked by the current analysis modules.</p>
+        </div>
+
+    </section>
+
+
+    <section class="intel-detection-grid">
+
+        <article class="intel-detection-card">
+
+            <div class="intel-detection-top">
+                <span class="intel-detection-icon text-icon">✉</span>
+                <span class="intel-detection-label">TEXT ANALYSIS</span>
+            </div>
+
+            <h3>Message intelligence</h3>
+
+            <p>
+                Examines submitted text for selected language patterns
+                associated with suspicious requests and pressure tactics.
+            </p>
+
+            <ul>
+                <li>Urgent demands and pressure language</li>
+                <li>OTP, password and PIN requests</li>
+                <li>Advance payment requests</li>
+                <li>Unrealistic reward claims</li>
+                <li>Threatening language</li>
+                <li>Remote access requests</li>
+                <li>Suspicious contact instructions</li>
+            </ul>
+
+            <div class="intel-card-footer">
+                <span class="intel-small-dot orange-dot"></span>
+                RULE-BASED TEXT CHECKS
+            </div>
+
+        </article>
+
+
+        <article class="intel-detection-card">
+
+            <div class="intel-detection-top">
+                <span class="intel-detection-icon url-icon">↗</span>
+                <span class="intel-detection-label">URL ANALYSIS</span>
+            </div>
+
+            <h3>Link structure intelligence</h3>
+
+            <p>
+                Inspects the submitted web address for structural
+                characteristics that may deserve additional attention.
+            </p>
+
+            <ul>
+                <li>HTTP versus HTTPS</li>
+                <li>Known URL shortener domains</li>
+                <li>Direct IP-address domains</li>
+                <li>Punycode domain indicators</li>
+                <li>Unusual numbers of subdomains</li>
+                <li>Misleading URL structures</li>
+            </ul>
+
+            <div class="intel-card-footer">
+                <span class="intel-small-dot cyan-dot"></span>
+                LOCAL URL STRUCTURE CHECKS
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- RISK SCORE GUIDE -->
+    <section class="intel-panel intel-risk-guide">
+
+        <div class="intel-panel-heading">
+            <div>
+                <span class="intel-eyebrow">RISK MODEL / 04</span>
+                <h2>Understanding the risk score</h2>
+                <p>How the current engine groups its calculated scores.</p>
+            </div>
+        </div>
+
+
+        <div class="intel-risk-levels">
+
+            <div class="intel-risk-level risk-level-green">
+                <div class="intel-risk-level-top">
+                    <span class="intel-risk-dot"></span>
+                    <strong>LOWER RISK</strong>
+                    <b>0–24</b>
+                </div>
+                <p>
+                    Fewer warning indicators were detected by the
+                    current checks. This does not guarantee safety.
+                </p>
+            </div>
+
+
+            <div class="intel-risk-level risk-level-yellow">
+                <div class="intel-risk-level-top">
+                    <span class="intel-risk-dot"></span>
+                    <strong>NEEDS REVIEW</strong>
+                    <b>25–59</b>
+                </div>
+                <p>
+                    Potential warning indicators were detected.
+                    Review the findings before taking action.
+                </p>
+            </div>
+
+
+            <div class="intel-risk-level risk-level-red">
+                <div class="intel-risk-level-top">
+                    <span class="intel-risk-dot"></span>
+                    <strong>HIGH RISK</strong>
+                    <b>60–100</b>
+                </div>
+                <p>
+                    Strong or multiple warning indicators were detected.
+                    Treat the content with caution.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRANSPARENCY -->
+    <section class="intel-transparency">
+
+        <div class="intel-transparency-icon">ⓘ</div>
+
+        <div>
+            <span class="intel-eyebrow">TRANSPARENCY & LIMITATIONS</span>
+
+            <h2>Intelligence you can understand.</h2>
+
+            <p>
+                These metrics represent reports saved in this application's
+                database. The current prototype uses rule-based text and URL
+                analysis. It does not connect to live global threat feeds,
+                visit submitted websites, verify claims independently or
+                guarantee that content is safe or malicious.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- ACTIONS -->
+    <section class="intel-actions">
+
+        <a href="/verify" class="intel-primary-action">
+            Run New Analysis <span>↗</span>
+        </a>
+
+        <a href="/dashboard" class="intel-secondary-action">
+            Open Report Dashboard
+        </a>
+
+    </section>
+
+
+</main>
+
+
+<footer class="site-footer">
+    © 2026 ProofMirror Shield | Team HackNova
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/charts.js') }}" defer></script>
+
+</body>
+</html>

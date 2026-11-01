@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Community | ProofMirror Shield</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/motion-theme.css') }}">
+
+    <!-- Community CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/communitypage.css') }}">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="topbar">
+
+    <a href="/" class="brand">
+        ProofMirrorShield<span>.</span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="/" class="ph-active">Home</a>
+        <a href="/about">About</a>
+        <a href="/verify">Verify</a>
+        <a href="/image-verify">Image Detection</a>
+        <a href="/intelligence">Intelligence</a>
+        <a href="/community">Community</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <a href="/verify" class="nav-button">
+        Submit Analysis
+    </a>
+
+</header>
+
+
+<main class="community-container">
+
+    <!-- PAGE HEADING -->
+
+    <section class="community-heading">
+
+        <span class="eyebrow">
+            PROOFMIRROR / COMMUNITY
+        </span>
+
+        <h1>
+            Shared <span>Awareness.</span>
+        </h1>
+
+        <p>
+            Explore suspicious reports, identify digital threats
+            and learn from security patterns detected across analyses.
+        </p>
+
+        <a href="/verify" class="primary-btn">
+            + New Analysis
+        </a>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="community-stats">
+
+        <div class="stat-card">
+            <span class="stat-label">TOTAL REPORTS</span>
+            <h2>{{ reports|length }}</h2>
+            <p>Saved analysis reports</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-label">HIGH RISK</span>
+            <h2>
+                {{ reports|selectattr('risk_level', 'equalto', 'HIGH')|list|length }}
+            </h2>
+            <p>Reports requiring attention</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-label">MEDIUM RISK</span>
+            <h2>
+                {{ reports|selectattr('risk_level', 'equalto', 'MEDIUM')|list|length }}
+            </h2>
+            <p>Reports needing verification</p>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-label">LOW RISK</span>
+            <h2>
+                {{ reports|selectattr('risk_level', 'equalto', 'LOW')|list|length }}
+            </h2>
+            <p>Lower-risk reports</p>
+        </div>
+
+    </section>
+
+
+    <!-- RECENT REPORTS -->
+
+    <section class="community-card">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">COMMUNITY DATABASE</span>
+                <h2>Recent Reports</h2>
+                <p>Review previously analysed messages and URLs.</p>
+            </div>
+
+            <span class="database-status">
+                ● DATABASE CONNECTED
+            </span>
+
+        </div>
+
+
+        <!-- SEARCH AND FILTER -->
+
+        <div class="filter-area">
+
+            <input
+                type="search"
+                id="reportSearch"
+                placeholder="Search reports..."
+            >
+
+            <select id="riskFilter">
+                <option value="all">All Risk Levels</option>
+                <option value="high">High Risk</option>
+                <option value="medium">Medium Risk</option>
+                <option value="low">Low Risk</option>
+            </select>
+
+            <select id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="url">URL</option>
+                <option value="text">Text</option>
+            </select>
+
+        </div>
+
+
+        {% if reports %}
+
+        <div class="table-wrapper">
+
+            <table class="community-table" id="reportsTable">
+
+                <thead>
+                    <tr>
+                        <th>Report ID</th>
+                        <th>Submitted Content</th>
+                        <th>Type</th>
+                        <th>Score</th>
+                        <th>Risk Level</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for report in reports %}
+
+                    <tr class="report-row"
+                        data-risk="{{ report.risk_level|lower }}"
+                        data-type="{{ report.input_type|lower }}">
+
+                        <td>#{{ report.id }}</td>
+
+                        <td class="report-preview">
+
+                            {% if report.text_preview %}
+                                {{ report.text_preview[:60] }}
+                            {% elif report.url %}
+                                {{ report.url[:60] }}
+                            {% else %}
+                                No preview available
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+                            {{ report.input_type|replace('_', ' ')|title }}
+                        </td>
+
+                        <td>{{ report.score }}/100</td>
+
+                        <td>
+                            <span class="risk-badge {{ report.risk_level|lower }}">
+                                {{ report.verdict }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <a href="/result/{{ report.id }}" class="view-link">
+                                View report →
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            <p id="noResults" hidden>
+                No matching reports found.
+            </p>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">◎</div>
+
+            <h3>No reports available yet</h3>
+
+            <p>
+                Submit suspicious messages or URLs to start
+                building the community report archive.
+            </p>
+
+            <a href="/verify" class="primary-btn">
+                Create First Report
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- COMMUNITY GUIDELINES -->
+
+    <section class="community-card">
+
+        <span class="eyebrow">SAFETY AND AWARENESS</span>
+
+        <h2>Use shared information responsibly.</h2>
+
+        <p class="guideline-intro">
+            Help create a safer digital environment by following
+            responsible reporting practices.
+        </p>
+
+
+        <div class="guideline-grid">
+
+            <div class="guideline-box">
+
+                <span class="guideline-number">01</span>
+
+                <h3>Verify Independently</h3>
+
+                <p>
+                    Treat previous reports as warning signals.
+                    Always verify information using official sources.
+                </p>
+
+            </div>
+
+
+            <div class="guideline-box">
+
+                <span class="guideline-number">02</span>
+
+                <h3>Protect Personal Data</h3>
+
+                <p>
+                    Never share passwords, OTPs, banking details
+                    or sensitive personal information.
+                </p>
+
+            </div>
+
+
+            <div class="guideline-box">
+
+                <span class="guideline-number">03</span>
+
+                <h3>Avoid Assumptions</h3>
+
+                <p>
+                    An automated risk score is not proof of fraud.
+                    Investigate before making conclusions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTTOM CTA -->
+
+    <section class="community-bottom">
+
+        <div>
+            <span class="eyebrow">STAY ALERT / STAY SAFE</span>
+
+            <h2>
+                Think before you click.
+            </h2>
+
+            <p>
+                Verify suspicious messages and links before trusting them.
+            </p>
+        </div>
+
+        <a href="/verify" class="primary-btn">
+            Verify Now →
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+    © 2026 ProofMirror Shield | Team HackNova
+</footer>
+
+
+<!-- SEARCH AND FILTER JAVASCRIPT -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const search = document.getElementById("reportSearch");
+    const risk = document.getElementById("riskFilter");
+    const type = document.getElementById("typeFilter");
+
+    const rows = document.querySelectorAll(".report-row");
+    const noResults = document.getElementById("noResults");
+
+    function filterReports() {
+
+        const searchValue = search.value.toLowerCase();
+        const riskValue = risk.value;
+        const typeValue = type.value;
+
+        let count = 0;
+
+        rows.forEach(row => {
+
+            const text = row.innerText.toLowerCase();
+            const rowRisk = row.dataset.risk;
+            const rowType = row.dataset.type;
+
+            const searchMatch = text.includes(searchValue);
+            const riskMatch = riskValue === "all" || rowRisk === riskValue;
+            const typeMatch = typeValue === "all" || rowType.includes(typeValue);
+
+            const visible = searchMatch && riskMatch && typeMatch;
+
+            row.style.display = visible ? "" : "none";
+
+            if (visible) count++;
+
+        });
+
+        if (noResults) {
+            noResults.hidden = count !== 0;
+        }
+
+    }
+
+    if (search) search.addEventListener("input", filterReports);
+    if (risk) risk.addEventListener("change", filterReports);
+    if (type) type.addEventListener("change", filterReports);
+
+});
+
+</script>
+
+</body>
+</html>

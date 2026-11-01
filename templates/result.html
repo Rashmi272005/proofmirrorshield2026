@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Report | ProofMirror Shield</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/motion-theme.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+    <a class="brand" href="/">ProofMirror<span>.</span></a>
+    <nav class="nav-links">
+        <a href="/" class="ph-active">Home</a>
+        <a href="/about">About</a>
+        <a href="/verify">Verify</a>
+        <a href="/image-verify">Image Detection</a>
+        <a href="/intelligence">Intelligence</a>
+        <a href="/community">Community</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+    <a class="nav-button" href="/verify">New Scan</a>
+</header>
+
+<main class="page-container">
+
+    <section class="page-heading">
+        <div>
+            <span class="eyebrow">ANALYSIS COMPLETE</span>
+            <h1>Evidence Report</h1>
+            <p>Report #{{ report.id }} · {{ report.created_at[:19]|replace('T', ' ') }} UTC</p>
+        </div>
+   <div class="download-actions">
+    <a class="button button-primary"
+       href="/api/report/{{ report.id }}/download-pdf">
+        ↓ Download PDF Report
+    </a>
+
+
+</div>
+    </section>
+
+    <section class="result-overview">
+
+        <div class="content-card score-card">
+            <span class="eyebrow">OVERALL RISK SCORE</span>
+
+            <div class="score-circle {{ report.risk_level }}">
+                <strong>{{ report.score }}</strong>
+                <span>/100</span>
+            </div>
+
+            <span class="status-badge {{ report.risk_level }}">
+                {{ report.verdict }}
+            </span>
+
+            <p>
+                This score represents detected warning indicators,
+                not the probability that the content is fake.
+            </p>
+        </div>
+
+        <div class="content-card result-summary">
+            <span class="eyebrow">ANALYSIS SUMMARY</span>
+            <h2>What we found</h2>
+
+            <div class="summary-grid">
+                <div>
+                    <strong>{{ analysis.evidence.summary.total }}</strong>
+                    <span>Total findings</span>
+                </div>
+                <div>
+                    <strong class="danger">{{ analysis.evidence.summary.high }}</strong>
+                    <span>High severity</span>
+                </div>
+                <div>
+                    <strong class="warning">{{ analysis.evidence.summary.medium }}</strong>
+                    <span>Medium severity</span>
+                </div>
+                <div>
+                    <strong class="success">{{ analysis.evidence.summary.low }}</strong>
+                    <span>Low severity</span>
+                </div>
+            </div>
+
+            <p class="result-description">
+                {{ analysis.text_analysis.message }}
+                {% if analysis.input_summary.url_provided %}
+                    {{ analysis.url_analysis.message }}
+                {% endif %}
+            </p>
+        </div>
+
+    </section>
+
+    <section class="content-card">
+        <div class="section-header">
+            <div>
+                <span class="eyebrow">EXPLAINABLE ANALYSIS</span>
+                <h2>Detected Evidence</h2>
+            </div>
+            <span class="muted-text">
+                {{ analysis.evidence.findings|length }} finding(s)
+            </span>
+        </div>
+
+        {% if analysis.evidence.findings %}
+            <div class="evidence-list">
+                {% for item in analysis.evidence.findings %}
+                <article class="evidence-item">
+                    <div class="evidence-heading">
+                        <div>
+                            <span class="evidence-source">{{ item.source }}</span>
+                            <h3>{{ item.finding }}</h3>
+                        </div>
+                        <span class="status-badge {{ item.severity }}">
+                            {{ item.severity|title }}
+                        </span>
+                    </div>
+                    <p>{{ item.explanation }}</p>
+                </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">✓</div>
+                <h3>No major warning signs detected</h3>
+                <p>The current rules did not identify major risk indicators.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="two-column-grid">
+
+        <div class="content-card">
+            <span class="eyebrow">WHAT IS UNKNOWN?</span>
+            <h2>Verification gaps</h2>
+
+            <ul class="report-list">
+                {% for item in analysis.evidence.unknowns %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <span class="eyebrow">RECOMMENDED ACTIONS</span>
+            <h2>Next steps</h2>
+
+            <ul class="report-list action-list">
+                {% for item in analysis.evidence.next_steps %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </section>
+
+    <section class="content-card">
+        <span class="eyebrow">TRANSPARENCY</span>
+        <h2>Limitations of this analysis</h2>
+
+        <ul class="report-list">
+            {% for item in analysis.evidence.limitations %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        <p class="disclaimer">
+            {{ analysis.disclaimer }}
+        </p>
+    </section>
+
+    <div class="action-row">
+        <a href="/verify" class="button button-primary">Analyse Another →</a>
+        <a href="/dashboard" class="button button-secondary">Back to Dashboard</a>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    © 2026 ProofMirror Shield | Team HackNova
+</footer>
+
+</body>
+</html>

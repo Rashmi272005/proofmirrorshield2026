@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verify Content | ProofMirror Shield</title>
+
+    <meta name="description"
+          content="Inspect suspicious messages and URLs with ProofMirror Shield. Review warning signals and evidence before making a decision.">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/responsive.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/verify.css') }}">
+</head>
+
+<body class="verify-page">
+<header class="topbar">
+    <a class="brand" href="/">ProofMirrorShield<span> Shield</span></a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+        <a href="/" class="ph-active">Home</a>
+        <a href="/about">About</a>
+        <a href="/verify">Verify</a>
+        <a href="/image-verify">Image Detection</a>
+        <a href="/intelligence">Intelligence</a>
+        <a href="/community">Community</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+    <a class="nav-button" href="/dashboard">Dashboard ↗</a>
+</header>
+
+
+<main class="verify-main">
+
+    <!-- Background effects -->
+    <div class="verify-background-grid"></div>
+    <div class="verify-background-glow glow-left"></div>
+    <div class="verify-background-glow glow-right"></div>
+
+    <!-- HERO -->
+    <section class="verify-hero">
+
+        <div class="verify-hero-label">
+            <span class="verify-live-dot"></span>
+            PROOFMIRROR SECURITY CENTRE
+        </div>
+
+        <h1>
+            Verify before<br>
+            <span>you trust.</span>
+        </h1>
+
+        <p>
+            Examine suspicious messages and website links.
+            Understand potential warning signs and review
+            evidence before taking action.
+        </p>
+
+        <div class="verify-hero-tags">
+            <span>◈ TEXT ANALYSIS</span>
+            <span>⌕ URL INSPECTION</span>
+            <span>▤ EVIDENCE REPORTS</span>
+        </div>
+
+    </section>
+
+
+    <!-- MAIN WORKSPACE -->
+    <section class="verify-workspace">
+
+        <!-- FORM PANEL -->
+        <div class="verify-panel">
+
+            <div class="verify-panel-heading">
+
+                <div>
+                    <span class="verify-eyebrow">01 / INPUT</span>
+                    <h2>Examine content</h2>
+                    <p>Provide the information you want to inspect.</p>
+                </div>
+
+                <div class="verify-ready-badge">
+                    <span></span>
+                    READY
+                </div>
+
+            </div>
+
+
+            <form id="verifyForm" novalidate>
+
+                <!-- MESSAGE INPUT -->
+                <div class="verify-field-group">
+
+                    <div class="verify-field-heading">
+
+                        <label for="message">
+                            <span class="verify-field-icon">✉</span>
+                            Suspicious message
+                        </label>
+
+                        <span class="verify-optional">OPTIONAL</span>
+
+                    </div>
+
+                    <textarea
+                        id="message"
+                        name="text"
+                        maxlength="10000"
+                        placeholder="Paste a suspicious WhatsApp message, SMS, email or other text here..."
+                        spellcheck="false"
+                        aria-describedby="messageHelp charCount"
+                    ></textarea>
+
+                    <div class="verify-input-footer">
+                        <span id="messageHelp">
+                            Do not include your real passwords, OTPs or private information.
+                        </span>
+
+                        <span id="charCount" class="verify-counter">
+                            0 / 10000
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- DIVIDER -->
+                <div class="verify-divider">
+                    <span></span>
+                    <b>AND / OR</b>
+                    <span></span>
+                </div>
+
+
+                <!-- URL INPUT -->
+                <div class="verify-field-group">
+
+                    <div class="verify-field-heading">
+
+                        <label for="url">
+                            <span class="verify-field-icon url-icon">↗</span>
+                            Website URL
+                        </label>
+
+                        <span class="verify-optional">OPTIONAL</span>
+
+                    </div>
+
+                    <input
+                        id="url"
+                        name="url"
+                        type="text"
+                        maxlength="2048"
+                        placeholder="https://example.com"
+                        autocomplete="off"
+                        spellcheck="false"
+                        aria-describedby="urlHelp"
+                    >
+
+                    <div class="verify-input-footer">
+                        <span id="urlHelp">
+                            We inspect URL characteristics without opening the website.
+                        </span>
+
+                        <span class="verify-counter">MAX 2048</span>
+                    </div>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="verificationError"
+                    class="verify-error"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+
+                <!-- SUBMIT -->
+                <button
+                    id="analyzeButton"
+                    class="verify-submit"
+                    type="submit"
+                >
+
+                    <span id="buttonText">Analyse content</span>
+                    <span class="verify-submit-arrow">↗</span>
+
+                </button>
+
+
+                <!-- LOADING -->
+                <div id="loadingState" class="verify-loading" hidden>
+
+                    <div class="verify-loader"></div>
+
+                    <div>
+                        <strong>Examining submitted content</strong>
+                        <span>Processing indicators and preparing your report...</span>
+                    </div>
+
+                </div>
+
+            </form>
+
+
+            <div class="verify-form-bottom">
+                <span>◈</span>
+                Your analysis report will be generated after submission.
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT INFORMATION PANEL -->
+        <aside class="verify-side-panel">
+
+            <div class="verify-side-top">
+
+                <span class="verify-eyebrow">02 / THE PROCESS</span>
+
+                <h2>
+                    From input<br>
+                    to <span>insight.</span>
+                </h2>
+
+                <p>
+                    Understand how ProofMirror Shield examines
+                    submitted content.
+                </p>
+
+            </div>
+
+
+            <div class="verify-process">
+
+                <div class="verify-process-item">
+
+                    <div class="verify-process-icon">01</div>
+
+                    <div>
+                        <h3>Submit</h3>
+                        <p>Enter a message, website URL or both.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="verify-process-line"></div>
+
+
+                <div class="verify-process-item">
+
+                    <div class="verify-process-icon">02</div>
+
+                    <div>
+                        <h3>Analyse</h3>
+                        <p>Rule-based checks identify selected warning patterns.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="verify-process-line"></div>
+
+
+                <div class="verify-process-item">
+
+                    <div class="verify-process-icon">03</div>
+
+                    <div>
+                        <h3>Review</h3>
+                        <p>Examine findings, unknowns and recommended next steps.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAFETY CARD -->
+            <div class="verify-safety-card">
+
+                <div class="verify-safety-heading">
+                    <span>!</span>
+                    <strong>Security reminder</strong>
+                </div>
+
+                <p>
+                    Never share OTPs, passwords, UPI PINs or banking
+                    details with unknown senders.
+                </p>
+
+            </div>
+
+
+            <!-- PRIVACY CARD -->
+            <div class="verify-privacy-card">
+                <span>◈</span>
+
+                <div>
+                    <strong>URL inspection</strong>
+                    <p>
+                        This tool analyses URL structure. It does not
+                        visit the submitted website or perform a live
+                        reputation check.
+                    </p>
+                </div>
+            </div>
+
+        </aside>
+
+    </section>
+
+
+    <!-- DISCLAIMER -->
+    <section class="verify-disclaimer">
+
+        <span>ⓘ</span>
+
+        <p>
+            <strong>Important:</strong>
+            ProofMirror Shield provides automated risk indicators,
+            not a definitive fact-check or guarantee of authenticity.
+            A lower-risk result does not mean content is safe.
+            Independently verify important claims through official channels.
+        </p>
+
+    </section>
+
+
+    <!-- BOTTOM STRIP -->
+    <section class="verify-bottom-strip">
+
+        <span>THINK BEFORE YOU TRUST.</span>
+
+        <span class="verify-bottom-line"></span>
+
+        <span>CHECK BEFORE YOU SHARE.</span>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+    © 2026 ProofMirror Shield | Team HackNova
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/analyzer.js') }}" defer></script>
+
+</body>
+</html>

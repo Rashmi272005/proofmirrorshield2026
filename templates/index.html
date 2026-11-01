@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ProofMirror Shield | Digital Trust Starts Here</title>
+
+    <meta name="description"
+          content="Analyse suspicious messages and URLs, understand warning signs, and make more informed digital decisions with ProofMirror Shield.">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/responsive.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="ph-header">
+
+    <a href="/" class="ph-brand">
+        <span class="ph-brand-name">
+            ProofMirror <span>Shield</span>
+        </span>
+    </a>
+
+    <nav class="ph-navigation" aria-label="Main navigation">
+
+        <a href="/" class="ph-active">Home</a>
+        <a href="/about">About</a>
+        <a href="/verify">Verify</a>
+        <a href="/image-verify">Image Detection</a>
+        <a href="/intelligence">Intelligence</a>
+        <a href="/community">Community</a>
+        <a href="/dashboard">Dashboard</a>
+        
+
+    </nav>
+
+    <a href="/verify" class="ph-header-button">
+        Start verification <span>↗</span>
+    </a>
+
+</header>
+
+
+<main class="ph-home">
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="ph-hero">
+
+        <div class="ph-grid-background"></div>
+        <div class="ph-glow ph-glow-left"></div>
+        <div class="ph-glow ph-glow-right"></div>
+        <div class="ph-energy-waves"></div>
+
+        <div class="ph-container ph-hero-layout">
+
+            <!-- LEFT CONTENT -->
+
+            <div class="ph-hero-content">
+
+                <div class="ph-hero-label">
+                    <span class="ph-status-indicator"></span>
+                    YOUR DIGITAL SAFETY COMPANION
+                </div>
+
+                <h1>
+                    Don't just trust.<br>
+                    <span>Verify the truth.</span>
+                </h1>
+
+                <p class="ph-hero-description">
+                    Suspicious messages. Misleading links. Digital uncertainty.
+
+                    <strong>ProofMirror Shield</strong> helps identify selected
+                    warning signs, understand potential risks and make more
+                    informed decisions before you click or share.
+                </p>
+
+                <div class="ph-hero-actions">
+
+                    <a href="/verify" class="ph-primary-button">
+                        <span>Verify content</span>
+                        <span class="ph-button-arrow">↗</span>
+                    </a>
+
+                    <a href="#how-it-works" class="ph-secondary-button">
+                        Explore how it works
+                        <span>↓</span>
+                    </a>
+
+                </div>
+
+                <div class="ph-hero-points">
+
+                    <div>
+                        <span class="ph-check">✓</span>
+                        Text analysis
+                    </div>
+
+                    <div>
+                        <span class="ph-check">✓</span>
+                        URL inspection
+                    </div>
+
+                    <div>
+                        <span class="ph-check">✓</span>
+                        Evidence reports
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT ANIMATED SECURITY VISUAL -->
+
+            <div class="ph-hero-visual">
+
+                <div class="ph-visual-orbit orbit-one"></div>
+                <div class="ph-visual-orbit orbit-two"></div>
+
+                <div class="ph-scanner-panel">
+
+                    <div class="ph-scanner-header">
+
+                        <div class="ph-scanner-title">
+                            <span class="ph-scanner-dot"></span>
+                            SECURITY OVERVIEW
+                        </div>
+
+                        <span class="ph-demo-label">VISUAL PREVIEW</span>
+
+                    </div>
+
+                    <div class="ph-scanner-display">
+
+                        <div class="ph-scanner-grid"></div>
+
+                        <div class="ph-scanner-ring scanner-ring-one"></div>
+                        <div class="ph-scanner-ring scanner-ring-two"></div>
+                        <div class="ph-scanner-ring scanner-ring-three"></div>
+
+                        <div class="ph-scanner-sweep"></div>
+
+                        <div class="ph-shield-core">
+                            <span class="ph-shield-symbol">✓</span>
+                            <strong>PM</strong>
+                            <small>SHIELD</small>
+                        </div>
+
+                        <span class="ph-scanner-node node-one"></span>
+                        <span class="ph-scanner-node node-two"></span>
+                        <span class="ph-scanner-node node-three"></span>
+
+                    </div>
+
+                    <div class="ph-scanner-status">
+
+                        <div>
+                            <span class="ph-status-line"></span>
+                            <span>READY FOR ANALYSIS</span>
+                        </div>
+
+                        <span class="ph-status-code">PM / 001</span>
+
+                    </div>
+
+                    <div class="ph-scanner-bottom">
+
+                        <div class="ph-scanner-stat">
+                            <span>01</span>
+                            <small>SUBMIT</small>
+                        </div>
+
+                        <div class="ph-scanner-connector"></div>
+
+                        <div class="ph-scanner-stat">
+                            <span>02</span>
+                            <small>ANALYSE</small>
+                        </div>
+
+                        <div class="ph-scanner-connector"></div>
+
+                        <div class="ph-scanner-stat">
+                            <span>03</span>
+                            <small>REVIEW</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="ph-floating-alert ph-alert-top">
+                    <span class="ph-alert-icon">⌁</span>
+                    <span>
+                        <strong>Warning signals</strong>
+                        <small>Understand what stands out</small>
+                    </span>
+                </div>
+
+                <div class="ph-floating-alert ph-alert-bottom">
+                    <span class="ph-alert-icon cyan">✓</span>
+                    <span>
+                        <strong>Evidence matters</strong>
+                        <small>Review before you decide</small>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ph-hero-bottom">
+            <span>THINK</span>
+            <i></i>
+            <span>CHECK</span>
+            <i></i>
+            <span>DECIDE</span>
+        </div>
+
+    </section>
+
+
+    <!-- ================= INTRODUCTION STRIP ================= -->
+
+    <section class="ph-intro-strip">
+
+        <div class="ph-container ph-intro-grid">
+
+            <div>
+                <span class="ph-intro-number">01</span>
+                <span>
+                    <strong>Understand the message</strong>
+                    <small>Review text warning patterns</small>
+                </span>
+            </div>
+
+            <div>
+                <span class="ph-intro-number">02</span>
+                <span>
+                    <strong>Inspect the link</strong>
+                    <small>Identify suspicious URL characteristics</small>
+                </span>
+            </div>
+
+            <div>
+                <span class="ph-intro-number">03</span>
+                <span>
+                    <strong>Read the evidence</strong>
+                    <small>See findings and suggested next steps</small>
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROBLEM SECTION ================= -->
+
+    <section class="ph-section ph-problem">
+
+        <div class="ph-container ph-problem-layout">
+
+            <div class="ph-problem-heading">
+
+                <div class="ph-section-label">
+                    02 / THE DIGITAL CHALLENGE
+                </div>
+
+                <h2>
+                    One click can change
+                    <span>everything.</span>
+                </h2>
+
+            </div>
+
+            <div class="ph-problem-content">
+
+                <p>
+                    Digital communication has made information easier to
+                    access, but suspicious messages and misleading links
+                    can also reach people quickly.
+                </p>
+
+                <p>
+                    Some messages create urgency, request sensitive
+                    information, promise unrealistic rewards or direct
+                    users towards questionable links.
+                </p>
+
+                <div class="ph-problem-highlight">
+                    <span>!</span>
+                    <strong>
+                        When something feels suspicious, pause and
+                        examine the warning signs before acting.
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="ph-section ph-features">
+
+        <div class="ph-container">
+
+            <div class="ph-section-heading">
+
+                <div>
+                    <div class="ph-section-label">
+                        03 / WHAT WE OFFER
+                    </div>
+
+                    <h2>
+                        Your first line of
+                        <span>digital awareness.</span>
+                    </h2>
+                </div>
+
+                <p>
+                    A collection of tools designed to help users
+                    inspect content, understand detected signals
+                    and review their reports.
+                </p>
+
+            </div>
+
+
+            <div class="ph-feature-grid">
+
+                <a href="/verify" class="ph-feature-card">
+
+                    <div class="ph-feature-top">
+                        <span class="ph-feature-icon">⌕</span>
+                        <span class="ph-feature-number">01</span>
+                    </div>
+
+                    <h3>Smart Verification</h3>
+
+                    <p>
+                        Submit text or URLs for a structured check
+                        of selected warning patterns.
+                    </p>
+
+                    <span class="ph-feature-link">
+                        Verify content <b>↗</b>
+                    </span>
+
+                </a>
+
+
+                <a href="/image-verify" class="ph-feature-card">
+
+                    <div class="ph-feature-top">
+                        <span class="ph-feature-icon">◎</span>
+                        <span class="ph-feature-number">05</span>
+                    </div>
+
+                    <h3>Image Detection</h3>
+
+                    <p>
+                        Upload an image to detect visible faces,
+                        view face locations and review AI-image
+                        detection predictions.
+                    </p>
+
+                    <span class="ph-feature-link">
+                        Analyse an image <b>↗</b>
+                    </span>
+
+                </a>
+
+
+                <a href="/intelligence" class="ph-feature-card">
+
+                    <div class="ph-feature-top">
+                        <span class="ph-feature-icon cyan">◈</span>
+                        <span class="ph-feature-number">02</span>
+                    </div>
+
+                    <h3>Risk Intelligence</h3>
+
+                    <p>
+                        Explore the analysis overview and review
+                        reported risk categories.
+                    </p>
+
+                    <span class="ph-feature-link">
+                        Explore intelligence <b>↗</b>
+                    </span>
+
+                </a>
+
+
+                <a href="/community" class="ph-feature-card">
+
+                    <div class="ph-feature-top">
+                        <span class="ph-feature-icon purple">◎</span>
+                        <span class="ph-feature-number">03</span>
+                    </div>
+
+                    <h3>Community Shield</h3>
+
+                    <p>
+                        Explore previously saved reports and
+                        community-related information available
+                        in the application.
+                    </p>
+
+                    <span class="ph-feature-link">
+                        Visit community <b>↗</b>
+                    </span>
+
+                </a>
+
+
+                <a href="/dashboard" class="ph-feature-card">
+
+                    <div class="ph-feature-top">
+                        <span class="ph-feature-icon green">▤</span>
+                        <span class="ph-feature-number">04</span>
+                    </div>
+
+                    <h3>Report Dashboard</h3>
+
+                    <p>
+                        Review saved reports, recent activity
+                        and analysis summaries.
+                    </p>
+
+                    <span class="ph-feature-link">
+                        Open dashboard <b>↗</b>
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="ph-section ph-how" id="how-it-works">
+
+        <div class="ph-container">
+
+            <div class="ph-section-label">
+                04 / THE PROCESS
+            </div>
+
+            <h2>
+                Three steps.<br>
+                <span>A clearer perspective.</span>
+            </h2>
+
+            <p class="ph-how-description">
+                No complicated process. Submit content, review the indicators
+                and use the report to guide your next decision.
+            </p>
+
+
+            <div class="ph-steps">
+
+                <article class="ph-step-card">
+
+                    <div class="ph-step-header">
+                        <span>01</span>
+                        <span>INPUT</span>
+                    </div>
+
+                    <div class="ph-step-icon">↳</div>
+
+                    <h3>Submit content</h3>
+
+                    <p>
+                        Enter the message, URL or both that you
+                        want to examine.
+                    </p>
+
+                </article>
+
+                <div class="ph-step-arrow">›</div>
+
+                <article class="ph-step-card">
+
+                    <div class="ph-step-header">
+                        <span>02</span>
+                        <span>ANALYSIS</span>
+                    </div>
+
+                    <div class="ph-step-icon">⌕</div>
+
+                    <h3>Check the signals</h3>
+
+                    <p>
+                        Rule-based checks look for selected
+                        suspicious text and URL patterns.
+                    </p>
+
+                </article>
+
+                <div class="ph-step-arrow">›</div>
+
+                <article class="ph-step-card">
+
+                    <div class="ph-step-header">
+                        <span>03</span>
+                        <span>RESULT</span>
+                    </div>
+
+                    <div class="ph-step-icon">▤</div>
+
+                    <h3>Review the report</h3>
+
+                    <p>
+                        Understand the risk category, findings,
+                        limitations and suggested next steps.
+                    </p>
+
+                </article>
+
+            </div>
+
+            <div class="ph-process-action">
+                <a href="/verify" class="ph-primary-button">
+                    Try the verification tool <span>↗</span>
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TRANSPARENCY ================= -->
+
+    <section class="ph-section ph-transparency">
+
+        <div class="ph-container ph-transparency-layout">
+
+            <div class="ph-transparency-icon">i</div>
+
+            <div>
+                <div class="ph-section-label">
+                    BUILT WITH TRANSPARENCY
+                </div>
+
+                <h2>
+                    Informed decisions.<br>
+                    <span>Not false certainty.</span>
+                </h2>
+
+                <p>
+                    ProofMirror Shield currently uses rule-based pattern
+                    checks. It does not independently verify facts, confirm
+                    sender identities or guarantee website safety. A lower-risk
+                    result does not prove that content is authentic.
+                    Always confirm important information through trusted
+                    official channels.
+                </p>
+
+            </div>
+
+            <a href="/about" class="ph-transparency-link">
+                Learn about our approach <span>↗</span>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FINAL CTA ================= -->
+
+    <section class="ph-final-cta">
+
+        <div class="ph-cta-glow"></div>
+
+        <div class="ph-container ph-cta-content">
+
+            <div class="ph-section-label">
+                YOUR DIGITAL SAFETY STARTS WITH A CHECK
+            </div>
+
+            <h2>
+                Before you click.<br>
+                <span>Before you trust.</span>
+            </h2>
+
+            <p>
+                Take a moment. Examine the signals. Make an informed choice.
+            </p>
+
+            <a href="/verify" class="ph-primary-button">
+                Start verification <span>↗</span>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="ph-footer">
+
+    <div class="ph-container ph-footer-content">
+
+        <a href="/" class="ph-brand">
+            <span class="ph-brand-name">
+                ProofMirror <span>Shield</span>
+            </span>
+        </a>
+
+        <p>
+            Think before you trust. Verify before you share.
+        </p>
+
+        <a href="/verify">
+            Start checking ↗
+        </a>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
