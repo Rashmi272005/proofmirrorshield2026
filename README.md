@@ -1,76 +1,224 @@
-<<<<<<< HEAD
+# 🛡️ ProofMirror Shield-HackNova-2
 
-# ProofMirror Shield
+### AI-Assisted Digital Content Verification & Risk Analysis Platform
 
-### AI-Assisted Digital Content Risk Analysis Prototype
+**ProofMirror Shield** is a web-based digital content verification platform designed to help users identify potential risks in suspicious messages, URLs, and images.
 
-ProofMirror Shield is a web-based prototype that identifies potential warning signs in suspicious messages and URLs.
+It combines rule-based analysis, AI-assisted image detection, facial detection, and evidence-based explanations to help users make more informed decisions about digital content.
 
-## Features
+---
 
-- Message risk analysis
-- URL structure analysis
-- Rule-based risk scoring
-- Evidence and warning explanations
-- Risk classification
-- Report generation and JSON download
-- Community report history
-- Dashboard statistics
-- Intelligence dashboard
+## 🚀 Project Overview
 
-## Technology Stack
+With the increasing spread of phishing messages, suspicious links, and AI-generated images, it is becoming difficult for users to determine whether digital content can be trusted.
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: Python Flask
-- Database: SQLite
-- Testing: Pytest
+ProofMirror Shield addresses this challenge by providing a unified platform that analyzes submitted content, highlights warning signs, and presents understandable results.
 
-## Risk Classification
+## ✨ Key Features
 
-| Score | Classification |
-|---|---|
-| 0–24 | Lower Risk |
-| 25–59 | Needs Review |
-| 60–100 | High Risk |
+### 1. Message Risk Analysis
 
-## Installation
+* Analyzes suspicious text messages.
+* Identifies potential scam-related patterns.
+* Generates risk scores and classifications.
+* Provides explanations for detected warning signs.
 
-1. Install Python 3.
-2. Open the project folder in VS Code.
-3. Create a virtual environment:
+### 2. URL Risk Analysis
 
-   python -m venv venv
+* Examines URL structures for suspicious patterns.
+* Identifies potentially risky URL characteristics.
+* Provides risk indicators and analysis results.
 
-4. Activate it on Windows:
+### 3. AI Image Detection
 
-   venv\Scripts\activate
+* Analyzes uploaded images using an AI-assisted detection model.
+* Estimates whether an image may be AI-generated or real.
+* Displays AI and real-image probability estimates.
 
-5. Install dependencies:
+### 4. Face Detection
 
-   pip install -r requirements.txt
+* Detects faces in uploaded images.
+* Displays the number of detected faces.
+* Provides face positions and detection confidence.
 
-## Run the Application
+### 5. Reports & Evidence
 
+* Generates analysis reports.
+* Provides evidence-based explanations.
+* Supports report downloads and JSON data export.
+
+### 6. Dashboard & Community
+
+* Displays analysis statistics.
+* Provides an overview of verification activity.
+* Maintains community report history.
+* Includes an intelligence dashboard.
+---
+
+## 🛠️ Technology Stack
+
+| Component          | Technologies          |
+| ------------------ | --------------------- |
+| Frontend           | HTML, CSS, JavaScript |
+| Backend            | Python, Flask         |
+| Database           | SQLite                |
+| Image Processing   | OpenCV, Pillow, NumPy |
+| AI Image Detection | PyTorch, Transformers |
+| Face Detection     | OpenCV YuNet          |
+| Report Generation  | ReportLab             |
+| Testing            | Pytest                |
+| Version Control    | Git & GitHub          |
+
+---
+
+## 📂 Project Structure
+
+```text
+ProofMirror-Shield/
+│
+├── backend/
+│   ├── analyzer.py
+│   ├── database.py
+│   ├── evidence_engine.py
+│   ├── image_detector.py
+│   ├── image_routes.py
+│   ├── ai_image_detector.py
+│   └── report_generator.py
+│
+├── static/
+│   ├── css/
+│   ├── images/
+│   └── js/
+│
+├── templates/
+│   ├── index.html
+│   ├── about.html
+│   ├── dashboard.html
+│   ├── community.html
+│   ├── intelligence.html
+│   ├── verify.html
+│   ├── image_verify.html
+│   └── result.html
+│
+├── tests/
+│
+├── app.py
+├── config.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### Prerequisites
+
+* Python 3.12 or later
+* Git
+* Visual Studio Code
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/Rashmi272005/proofmirrorshield2026.git
+```
+
+### Step 2: Open the Project Folder
+
+```bash
+cd proofmirrorshield2026
+```
+
+### Step 3: Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### Step 4: Activate the Virtual Environment
+
+For Windows PowerShell:
+
+```powershell
+venv\Scripts\Activate.ps1
+```
+
+### Step 5: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 6: Run the Application
+
+```bash
 python app.py
+```
 
-Open:
+### Step 7: Open in Your Browser
 
+```text
 http://127.0.0.1:5000
+```
 
-## Run Tests
+---
 
+## 🧪 Run Tests
+
+Execute the following command:
+
+```bash
 pytest -v
+```
 
-## Important Limitations
+---
 
-- Uses transparent rule-based checks.
-- Does not independently verify facts.
-- Does not visit submitted URLs.
-- Does not use a live threat-intelligence database.
-- Risk scores are indicators, not proof of authenticity.
+## 📊 Risk Classification
 
-Always verify important information using official sources.
-=======
-# proofmirrorshield2026
-hii
->>>>>>> bd6d99a84bd549b1cfaa9554a2ed5ef34cc3196a
+The text analysis prototype uses the following risk classification:
+
+| Risk Score | Classification |
+| ---------- | -------------- |
+| 0–24       | Lower Risk     |
+| 25–59      | Needs Review   |
+| 60–100     | High Risk      |
+
+Risk scores are indicators generated by the analysis system and should not be treated as definitive proof.
+
+---
+
+## ⚠️ Important Limitations
+
+* Text and URL analysis use rule-based checks.
+* The platform does not independently verify every factual claim.
+* Submitted URLs are not necessarily visited or checked against live threat-intelligence databases.
+* AI image detection provides estimates, not guaranteed identification.
+* Face detection identifies visible faces but does not establish a person's identity.
+* Results should be interpreted as decision-support information, not absolute judgments.
+
+Always verify important information through trusted and official sources.
+
+---
+
+## 🎯 Project Objective
+
+To develop an accessible digital verification platform that helps users recognize potential risks in online content through understandable analysis, AI-assisted image detection, and evidence-based reporting.
+
+---
+
+## 👩‍💻 Development
+
+**Project:** ProofMirror Shield
+**Category:** AI-Assisted Digital Content Verification
+**Backend:** Flask
+**Frontend:** HTML, CSS & JavaScript
+**Database:** SQLite
+
+---
+
+## ⭐ Support
+
+If you find this project interesting, consider giving the repository a star on GitHub!
+
