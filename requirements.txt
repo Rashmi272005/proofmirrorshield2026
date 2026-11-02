@@ -1,10 +1,6 @@
 Flask
-pytest
-opencv-python
+gunicorn
+opencv-python-headless
 numpy
 Pillow
-transformers
-torch
-torchvision
 reportlab
-gunicorn
